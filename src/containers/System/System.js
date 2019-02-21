@@ -1,22 +1,24 @@
-import Sidebar from './Sidebar'
+import Header from './Header'
+import Content from './Content'
 import React, { useState } from 'react'
 
-const _handleSidebarFormat = (format, setFormat) => {
-  return setFormat(format === 'normal' ? 'hidden' : 'normal')
-}
-
 const System = _ => {
-  const [sidebarFormat, setSidebarFormat] = useState('normal')
+  const [isSidebarVisible, setSidebarVisible] = useState(true)
+  const [isSidebarCompact, setSidebarCompact] = useState(true)
+
+  const _toggleSidebar = _ => setSidebarVisible(!isSidebarVisible)
+
+  const _toggleCompact = _ => setSidebarCompact(!isSidebarCompact)
 
   return (
     <div>
-      <p>Current sidebar format: {sidebarFormat}</p>
-
-      <button onClick={_ => _handleSidebarFormat(sidebarFormat, setSidebarFormat)}>
-        Change format
-      </button>
-
-      <Sidebar />
+      <Header
+        isSidebarVisible={isSidebarVisible}
+        isSidebarCompact={isSidebarCompact}
+        toggleSidebar={_ => _toggleSidebar()}
+        toggleCompact={_ => _toggleCompact()}
+      />
+      <Content isSidebarVisible={isSidebarVisible} isSidebarCompact={isSidebarCompact} />
     </div>
   )
 }

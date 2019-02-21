@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-module-resolver": "3.2.0",
     "node-sass": "4.11.0",
     "react": "16.8.2",
     "react-dom": "16.8.2",
+    "react-icons": "^3.4.0",
     "react-scripts": "2.1.5",
     "react-toastify": "4.5.2"
   },
@@ -15,7 +16,7 @@
     "build": "npm run tailwind:build && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "tailwind:build":"tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css"
+    "tailwind:build": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css"
   },
   "eslintConfig": {
     "extends": "react-app"

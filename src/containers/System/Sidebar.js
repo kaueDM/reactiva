@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import ThemeContext from 'context/ThemeContext'
 
-const Sidebar = _ => (
-  <div>
-    <p className='text-red-dark'>Sidebar!</p>
-  </div>
-)
+export default function Sidebar ({ ...props }) {
+  const theme = useContext(ThemeContext)
 
-export default Sidebar
+  return (
+    <aside className={_asideClasses(props, theme.sidebar)} />
+  )
+}
+
+const _asideClasses = (props, { background }) => {
+  const classes = ['reactiva-sidebar', 'p-4', 'fixed', background]
+
+  props.isSidebarCompact && classes.push('reactiva-sidebar-compact')
+
+  classes.push(props.isSidebarVisible ? 'reactiva-sidebar-visible' : 'reactiva-sidebar-hidden')
+
+  return classes.join(' ')
+}

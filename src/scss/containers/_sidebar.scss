@@ -1,0 +1,83 @@
+$NORMAL_WIDTH: 250px;
+$COMPACT_WIDTH: 50px;
+$TRANSITION: all 0.25s ease;
+
+@media (min-width: 992px) {
+    .reactiva-sidebar {
+        &-visible, &-hidden {
+            width: $NORMAL_WIDTH;
+            transition: $TRANSITION;
+            height: calc(100vh - 0.25rem * 12);
+        }
+
+        &-visible {
+            opacity: 1;
+        }
+
+        &-hidden {
+            opacity: 0;
+            transform: translateX(-$NORMAL_WIDTH);
+        }
+
+        &-compact {
+            width: $COMPACT_WIDTH;
+        }
+
+        &-hidden ~ &-spacer {
+            padding-left: 0;
+            transition: $TRANSITION;
+        }
+
+        &-visible {
+            & ~ .reactiva-sidebar-spacer {
+                transition: $TRANSITION;
+                padding-left: $NORMAL_WIDTH;
+            }
+            &.reactiva-sidebar-compact ~ .reactiva-sidebar-spacer {
+                transition: $TRANSITION;
+                padding-left: $COMPACT_WIDTH;
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    html, body {
+        overflow: hidden;
+    }
+
+    .reactiva-sidebar {
+        &-visible, &-hidden {
+            left: 0;
+            z-index: 10;
+            position: fixed;
+            width: $NORMAL_WIDTH;
+            transition: $TRANSITION;
+            top: calc(0.25rem * 12);
+            height: calc(100vh - 0.25rem * 12);
+        }
+
+        &-visible {
+            opacity: 1;
+        }
+
+        &-hidden {
+            opacity: 0;
+            transform: translateX(-$NORMAL_WIDTH);
+        }
+
+        &-overlay {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            position: fixed;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        &-compact {
+            width: $COMPACT_WIDTH;
+        }
+    }
+}
