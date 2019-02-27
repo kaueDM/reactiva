@@ -1,3 +1,12 @@
 @import "../css/tailwind.css";
 
 @import "./containers/sidebar";
+
+// override default styles
+ul {
+    padding: 0;
+
+    & li {
+        list-style: none;
+    }
+}

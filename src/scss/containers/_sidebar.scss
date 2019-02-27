@@ -1,6 +1,10 @@
 $NORMAL_WIDTH: 250px;
-$COMPACT_WIDTH: 50px;
+$COMPACT_WIDTH: 46px;
 $TRANSITION: all 0.25s ease;
+
+.reactiva-sidebar-icon {
+    font-size: 30px;
+}
 
 @media (min-width: 992px) {
     .reactiva-sidebar {
@@ -8,6 +12,11 @@ $TRANSITION: all 0.25s ease;
             width: $NORMAL_WIDTH;
             transition: $TRANSITION;
             height: calc(100vh - 0.25rem * 12);
+
+            & ul > li > p {
+                opacity: 1;
+                transition: opacity .1s ease;
+            }
         }
 
         &-visible {
@@ -21,6 +30,11 @@ $TRANSITION: all 0.25s ease;
 
         &-compact {
             width: $COMPACT_WIDTH;
+
+            & ul > li > p {
+                opacity: 0;
+                transition: opacity 0.1s ease;
+            }
         }
 
         &-hidden ~ &-spacer {
@@ -55,6 +69,11 @@ $TRANSITION: all 0.25s ease;
             transition: $TRANSITION;
             top: calc(0.25rem * 12);
             height: calc(100vh - 0.25rem * 12);
+
+            & ul > li > p {
+                opacity: 1;
+                transition: opacity 0.1s ease;
+            }
         }
 
         &-visible {
@@ -78,6 +97,11 @@ $TRANSITION: all 0.25s ease;
 
         &-compact {
             width: $COMPACT_WIDTH;
+
+            & ul > li > p {
+                opacity: 0;
+                transition: opacity 0.1s ease;
+            }
         }
     }
 }

@@ -1,18 +1,31 @@
-import React from 'react'
-import { MdMenu, MdViewCompact } from 'react-icons/md'
+import React, { useContext } from 'react'
 
-const Header = ({ ...props }) => (
-  <nav className='flex items-center justify-between bg-indigo-darkest fixed w-full h-12 z-40'>
-    <div className='flex items-center flex-no-shrink text-white ml-5'>
-      <MdMenu size={30} className='text-white' onClick={props.toggleSidebar} />
+import applyClasses from 'utils/applyClasses'
+import ThemeContext from 'context/ThemeContext'
 
-      <MdViewCompact size={30} className='text-white' onClick={props.toggleCompact} />
-    </div>
+const defaultIcon = ['material-icons', 'reactiva-sidebar-icon']
+const defaultNavButtons = ['flex', 'items-center', 'flex-no-shrink', 'text-white', 'ml-2']
+const defaultNav = ['flex', 'items-center', 'justify-between', 'fixed', 'w-full', 'h-12', 'z-40', 'shadow-md']
 
-    <div className='border text-white border-white p-2 mr-5'>
-      profile button
-    </div>
-  </nav>
-)
+export default function Sidebar ({ ...props }) {
+  const { header } = useContext(ThemeContext)
 
-export default Header
+  return (
+    <nav className={applyClasses(defaultNav, header.background)}>
+      <div className={applyClasses(defaultNavButtons, header.text)}>
+        <i
+          onClick={props.toggleSidebar}
+          className={applyClasses(defaultIcon, header.text)}
+        >
+          menu
+        </i>
+        <i
+          onClick={props.toggleCompact}
+          className={applyClasses(defaultIcon, 'ml-1')}
+        >
+        more_vert
+        </i>
+      </div>
+    </nav>
+  )
+}

@@ -1,19 +1,41 @@
-import React from 'react'
+import React, { Suspense } from 'react'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+
+import routes from 'routes'
 import Sidebar from './Sidebar'
 
 const Content = ({ ...props }) => (
-  <div className='pt-12 flex flex-row flex-wrap reactiva-content'>
+  <div className='pt-12 flex flex-row flex-wrap h-screen bg-grey-light'>
     <Sidebar {...props} />
 
     <main className='w-full reactiva-sidebar-spacer'>
 
       {_renderOverlay(props.isSidebarVisible)}
 
-      {Array.from({ length: 100 }, (_, i) => i).map(i => <p key={i}>{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}{i}</p>)}
+      <Suspense fallback={<p>Loading</p>}>
+        <BrowserRouter>
+          <Switch>
+            {_renderContent()}
+            <Redirect from='/' to='/dashboard' />
+          </Switch>
+        </BrowserRouter>
+      </Suspense>
     </main>
   </div>
 )
 
 const _renderOverlay = visible => visible ? <div className='reactiva-sidebar-overlay' /> : null
+
+const _renderContent = _ => routes.map((route, index) => {
+  return (
+    <Route
+      key={index}
+      path={route.path}
+      name={route.name}
+      exact={route.exact}
+      render={props => <route.component {...props} />}
+    />
+  )
+})
 
 export default Content

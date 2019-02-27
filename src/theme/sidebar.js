@@ -1,7 +1,11 @@
+import system from './system'
+
 const sidebar = {
-  background: 'bg-indigo-darker',
-  text: 'text-white',
-  textActive: 'text-red'
+  text: system.text,
+  item: {
+    hover: `hover:${system.background}`
+  },
+  background: `${system.background}-darker`
 }
 
 export default sidebar

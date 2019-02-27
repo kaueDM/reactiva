@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 const System = _ => {
   const [isSidebarVisible, setSidebarVisible] = useState(true)
-  const [isSidebarCompact, setSidebarCompact] = useState(true)
+  const [isSidebarCompact, setSidebarCompact] = useState(false)
 
   const _toggleSidebar = _ => setSidebarVisible(!isSidebarVisible)
 
